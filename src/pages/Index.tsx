@@ -36,17 +36,32 @@ const Index = () => {
     setIsLoading(true);
 
     try {
-      // Prepend formatting instructions to ensure clean markdown responses
-      const formattingInstructions = `Format all responses cleanly using markdown for better readability.
+      // Prepend formatting instructions to ensure clean, visually structured responses
+      const formattingInstructions = `Format all responses with clear visual structure using emojis and separators.
 
-Formatting requirements:
-- Use **bold** for section headings (e.g., **Overview**, **Key Steps**, **Takeaways**)
-- Use bullet points (with -) or numbered lists for all structured information
-- Keep paragraphs short (2-3 sentences max) with blank lines between them
-- Add clear section titles like "Overview", "Steps", "Key Points", or "Takeaways"
-- For lists, add a blank line after the heading before starting bullets
+REQUIRED FORMAT:
+🧭 OVERVIEW
+Brief 2-3 sentence introduction to the topic.
+
+💡 KEY ELEMENTS (or KEY POINTS)
+• First Major Point
+  - Supporting detail
+  - Supporting detail
+
+• Second Major Point
+  - Supporting detail
+  - Supporting detail
+
+✅ SUMMARY (or TAKEAWAYS)
+Brief conclusion or key takeaways.
+
+FORMATTING RULES:
+- Always use emoji headers: 🧭 OVERVIEW, 💡 KEY ELEMENTS/POINTS, 🎯 STEPS, ✅ SUMMARY/TAKEAWAYS, 📚 SOURCES
+- Use bullet points with • for main items
+- Use dashes - for sub-items (indent with 2 spaces)
+- Add blank line after each emoji section header
+- Keep paragraphs short (2-3 sentences)
 - Add blank lines between major sections
-- End with a **Sources** section if applicable
 
 User question: `;
 
