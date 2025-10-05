@@ -44,12 +44,15 @@ const Index = () => {
         throw new Error('Failed to get response from webhook');
       }
 
-      const data = await response.text();
+      const data = await response.json();
+      
+      // Extract the output field from the JSON response
+      const responseText = data.output || data.text || JSON.stringify(data);
 
       // Add bot response
       const botMsg: Message = {
         id: (Date.now() + 1).toString(),
-        text: data || 'No response received',
+        text: responseText,
         isUser: false,
       };
       setMessages((prev) => [...prev, botMsg]);
