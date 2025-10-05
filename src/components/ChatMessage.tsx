@@ -25,7 +25,14 @@ export const ChatMessage = ({ message, isUser }: ChatMessageProps) => {
         {isUser ? (
           <p className="whitespace-pre-wrap">{message}</p>
         ) : (
-          <div className="prose prose-sm dark:prose-invert max-w-none">
+          <div className="prose prose-sm dark:prose-invert max-w-none
+            prose-p:my-3 prose-p:leading-relaxed
+            prose-headings:mt-6 prose-headings:mb-3 prose-headings:font-semibold
+            prose-ul:my-4 prose-ul:space-y-2 prose-li:my-1
+            prose-ol:my-4 prose-ol:space-y-2
+            prose-strong:font-semibold prose-strong:text-foreground
+            prose-code:bg-muted prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+            [&>*:first-child]:mt-0 [&>*:last-child]:mb-0">
             <ReactMarkdown>{message}</ReactMarkdown>
           </div>
         )}
