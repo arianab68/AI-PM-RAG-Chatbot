@@ -66,8 +66,8 @@ User question: `;
       // Extract the output field from the JSON response
       let responseText = data.output || data.text || JSON.stringify(data);
       
-      // Convert literal \n to actual line breaks for proper markdown rendering
-      responseText = responseText.replace(/\\n/g, '\n');
+      // Convert literal \n to actual line breaks and add paragraph spacing
+      responseText = responseText.replace(/\\n/g, '\n').replace(/\n(?!\n)/g, '\n\n');
 
       // Add bot response
       const botMsg: Message = {
