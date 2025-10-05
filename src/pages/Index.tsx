@@ -140,8 +140,8 @@ User question: `;
               <MessageSquare className="h-4 w-4 text-white" />
             </div>
             <div>
-              <h1 className="text-base font-semibold text-foreground">AI Assistant</h1>
-              <p className="text-xs text-muted-foreground">Your intelligent workspace companion</p>
+              <h1 className="text-base font-semibold text-foreground">AI Product Management Chatbot</h1>
+              <p className="text-xs text-muted-foreground">Your intelligent PM companion</p>
             </div>
           </div>
         </div>
@@ -156,10 +156,10 @@ User question: `;
                 <MessageSquare className="h-10 w-10 text-white" />
               </div>
               <h2 className="text-2xl font-semibold mb-3 text-foreground">
-                Welcome to AI Assistant
+                Welcome to Your PM Assistant
               </h2>
               <p className="text-muted-foreground max-w-md text-[15px] leading-relaxed">
-                Ask me anything about product management, strategy, or get help with your work.
+                I'm your product management assistant. Ask me anything you want to know about product management.
               </p>
             </div>
           ) : (

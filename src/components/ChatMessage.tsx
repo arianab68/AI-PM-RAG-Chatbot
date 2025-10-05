@@ -18,12 +18,12 @@ export const ChatMessage = ({ message, isUser }: ChatMessageProps) => {
         className={cn(
           "max-w-[75%] rounded-2xl px-6 py-4",
           isUser
-            ? "bg-[hsl(var(--chat-user-bg))] text-white shadow-[var(--shadow-md)]"
+            ? "bg-[hsl(var(--chat-user-bg))] text-[hsl(var(--chat-user-fg,var(--primary-foreground)))] shadow-[var(--shadow-md)]"
             : "bg-[hsl(var(--chat-bot-bg))] text-foreground border border-border shadow-[var(--shadow-sm)]"
         )}
       >
         {isUser ? (
-          <p className="whitespace-pre-wrap text-[15px] leading-relaxed">{message}</p>
+          <p className="whitespace-pre-wrap text-[15px] leading-relaxed text-[hsl(var(--chat-user-fg))]">{message}</p>
         ) : (
           <div className="prose prose-sm dark:prose-invert max-w-none
             prose-p:my-4 prose-p:leading-relaxed prose-p:text-[15px]
