@@ -36,39 +36,8 @@ const Index = () => {
     setIsLoading(true);
 
     try {
-      // Prepend formatting instructions to ensure clean, visually structured responses
-      const formattingInstructions = `Format all responses with clear visual structure using emojis and separators.
-
-REQUIRED FORMAT:
-🧭 OVERVIEW
-Brief 2-3 sentence introduction to the topic.
-
-💡 KEY ELEMENTS (or KEY POINTS)
-• First Major Point
-  - Supporting detail
-  - Supporting detail
-
-• Second Major Point
-  - Supporting detail
-  - Supporting detail
-
-✅ SUMMARY (or TAKEAWAYS)
-Brief conclusion or key takeaways.
-
-FORMATTING RULES:
-- Always use emoji headers: 🧭 OVERVIEW, 💡 KEY ELEMENTS/POINTS, 🎯 STEPS, ✅ SUMMARY/TAKEAWAYS, 📚 SOURCES
-- Use bullet points with • for main items
-- Use dashes - for sub-items (indent with 2 spaces)
-- Add blank line after each emoji section header
-- Keep paragraphs short (2-3 sentences)
-- Add blank lines between major sections
-
-User question: `;
-
-      const fullMessage = formattingInstructions + userMessage;
-      
       const response = await fetch(
-        `${WEBHOOK_URL}?message=${encodeURIComponent(fullMessage)}`
+        `${WEBHOOK_URL}?message=${encodeURIComponent(userMessage)}`
       );
 
       if (!response.ok) {
@@ -82,31 +51,6 @@ User question: `;
       
       // Convert literal \n to actual line breaks
       responseText = responseText.replace(/\\n/g, '\n');
-
-      // Heuristic formatting: add blank line after section headers ending with ':'
-      // and turn "Title: description" lines into bullets if not already a list item.
-      {
-        const rawLines = responseText.split('\n');
-        const withSpacing: string[] = [];
-        for (let i = 0; i < rawLines.length; i++) {
-          const line = rawLines[i];
-          const next = rawLines[i + 1] ?? '';
-          withSpacing.push(line);
-          if (/:\s*$/.test(line) && next.trim() !== '') {
-            withSpacing.push(''); // add blank line after headings
-          }
-        }
-        const bulletized = withSpacing.map((l) => {
-          // Skip if it's already a list item or empty
-          if (/^\s*(?:[-*]|\d+\.)\s+/.test(l) || l.trim() === '') return l;
-          // Don't bulletize section headers like "Key aspects include:"
-          if (/include:\s*$/i.test(l)) return l;
-          // Bulletize "Title: details" lines
-          if (/^[A-Z][\w()\/'’`,&\-\s]{1,120}:\s+.+/.test(l)) return `- ${l}`;
-          return l;
-        });
-        responseText = bulletized.join('\n');
-      }
 
       // Add bot response
       const botMsg: Message = {
