@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChatMessage } from '@/components/ChatMessage';
 import { ChatInput } from '@/components/ChatInput';
-import { Loader2, MessageSquare } from 'lucide-react';
+import { Loader2, Target } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface Message {
@@ -137,7 +137,7 @@ User question: `;
         <div className="container max-w-4xl mx-auto px-6 py-5">
           <div className="flex items-center gap-3">
             <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-[var(--shadow-md)]">
-              <MessageSquare className="h-4 w-4 text-white" />
+              <Target className="h-4 w-4 text-white" />
             </div>
             <div>
               <h1 className="text-base font-semibold text-foreground">AI Product Management Chatbot</h1>
@@ -153,7 +153,7 @@ User question: `;
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full min-h-[500px] text-center">
               <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-8 shadow-[var(--shadow-lg)]">
-                <MessageSquare className="h-10 w-10 text-white" />
+                <Target className="h-10 w-10 text-white" />
               </div>
               <h2 className="text-2xl font-semibold mb-3 text-foreground">
                 Welcome to Your PM Assistant
