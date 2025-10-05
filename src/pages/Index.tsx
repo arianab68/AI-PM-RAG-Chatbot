@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { ChatMessage } from '@/components/ChatMessage';
 import { ChatInput } from '@/components/ChatInput';
-import { Loader2, Target } from 'lucide-react';
+import { Loader2, Lightbulb } from 'lucide-react';
 import { toast } from 'sonner';
 
 interface Message {
@@ -136,8 +136,8 @@ User question: `;
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10 shadow-[var(--shadow-sm)]">
         <div className="container max-w-4xl mx-auto px-6 py-5">
           <div className="flex items-center gap-3">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-[var(--shadow-md)]">
-              <Target className="h-4 w-4 text-white" />
+            <div className="h-9 w-9 rounded-xl bg-primary flex items-center justify-center shadow-[var(--shadow-md)]">
+              <Lightbulb className="h-4 w-4 text-primary-foreground" />
             </div>
             <div>
               <h1 className="text-base font-semibold text-foreground">AI Product Management Chatbot</h1>
@@ -152,8 +152,8 @@ User question: `;
         <div className="container max-w-4xl mx-auto px-6 py-8">
           {messages.length === 0 ? (
             <div className="flex flex-col items-center justify-center h-full min-h-[500px] text-center">
-              <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-8 shadow-[var(--shadow-lg)]">
-                <Target className="h-10 w-10 text-white" />
+              <div className="h-20 w-20 rounded-2xl bg-primary flex items-center justify-center mb-8 shadow-[var(--shadow-lg)]">
+                <Lightbulb className="h-10 w-10 text-primary-foreground" />
               </div>
               <h2 className="text-2xl font-semibold mb-3 text-foreground">
                 Welcome to Your PM Assistant
