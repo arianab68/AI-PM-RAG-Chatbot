@@ -97,15 +97,15 @@ User question: `;
   return (
     <div className="flex flex-col h-screen bg-background">
       {/* Header */}
-      <header className="border-b border-border bg-card shadow-sm">
-        <div className="container max-w-4xl mx-auto px-4 py-4">
+      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10 shadow-[var(--shadow-sm)]">
+        <div className="container max-w-4xl mx-auto px-6 py-5">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-              <MessageSquare className="h-5 w-5 text-white" />
+            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center shadow-[var(--shadow-md)]">
+              <MessageSquare className="h-4 w-4 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-semibold text-foreground">AI Assistant</h1>
-              <p className="text-sm text-muted-foreground">Ask me anything</p>
+              <h1 className="text-base font-semibold text-foreground">AI Assistant</h1>
+              <p className="text-xs text-muted-foreground">Your intelligent workspace companion</p>
             </div>
           </div>
         </div>
@@ -113,17 +113,17 @@ User question: `;
 
       {/* Messages Area */}
       <main className="flex-1 overflow-y-auto">
-        <div className="container max-w-4xl mx-auto px-4 py-6">
+        <div className="container max-w-4xl mx-auto px-6 py-8">
           {messages.length === 0 ? (
-            <div className="flex flex-col items-center justify-center h-full min-h-[400px] text-center">
-              <div className="h-20 w-20 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-6">
+            <div className="flex flex-col items-center justify-center h-full min-h-[500px] text-center">
+              <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center mb-8 shadow-[var(--shadow-lg)]">
                 <MessageSquare className="h-10 w-10 text-white" />
               </div>
-              <h2 className="text-2xl font-semibold mb-2 text-foreground">
+              <h2 className="text-2xl font-semibold mb-3 text-foreground">
                 Welcome to AI Assistant
               </h2>
-              <p className="text-muted-foreground max-w-md">
-                Start a conversation by typing your message below. I'm here to help!
+              <p className="text-muted-foreground max-w-md text-[15px] leading-relaxed">
+                Ask me anything about product management, strategy, or get help with your work.
               </p>
             </div>
           ) : (
@@ -136,8 +136,8 @@ User question: `;
                 />
               ))}
               {isLoading && (
-                <div className="flex justify-start mb-4">
-                  <div className="bg-muted rounded-2xl px-4 py-3 flex items-center gap-2">
+                <div className="flex justify-start mb-6">
+                  <div className="bg-card border border-border rounded-2xl px-6 py-4 flex items-center gap-3 shadow-[var(--shadow-sm)]">
                     <Loader2 className="h-4 w-4 animate-spin text-primary" />
                     <span className="text-sm text-muted-foreground">Thinking...</span>
                   </div>
@@ -150,8 +150,8 @@ User question: `;
       </main>
 
       {/* Input Area */}
-      <footer className="border-t border-border bg-card">
-        <div className="container max-w-4xl mx-auto px-4 py-4">
+      <footer className="border-t border-border bg-card/50 backdrop-blur-sm sticky bottom-0 shadow-[var(--shadow-sm)]">
+        <div className="container max-w-4xl mx-auto px-6 py-5">
           <ChatInput onSend={handleSendMessage} disabled={isLoading} />
         </div>
       </footer>

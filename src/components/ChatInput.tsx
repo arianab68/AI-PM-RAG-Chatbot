@@ -26,20 +26,20 @@ export const ChatInput = ({ onSend, disabled }: ChatInputProps) => {
   };
 
   return (
-    <div className="flex gap-2 items-end">
+    <div className="flex gap-3 items-end">
       <Textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={handleKeyDown}
-        placeholder="Type your message..."
+        placeholder="Ask me anything..."
         disabled={disabled}
-        className="min-h-[60px] max-h-[200px] resize-none rounded-2xl"
+        className="min-h-[56px] max-h-[200px] resize-none rounded-2xl border-border bg-card shadow-[var(--shadow-sm)] text-[15px] px-4 py-3 focus-visible:ring-primary focus-visible:ring-2 focus-visible:ring-offset-0"
       />
       <Button
         onClick={handleSend}
         disabled={disabled || !message.trim()}
         size="icon"
-        className="h-[60px] w-[60px] rounded-full bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity"
+        className="h-[56px] w-[56px] rounded-2xl bg-primary hover:bg-primary/90 transition-all shadow-[var(--shadow-md)] hover:shadow-[var(--shadow-lg)] disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <Send className="h-5 w-5" />
       </Button>
