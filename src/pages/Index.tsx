@@ -47,7 +47,10 @@ const Index = () => {
       const data = await response.json();
       
       // Extract the output field from the JSON response
-      const responseText = data.output || data.text || JSON.stringify(data);
+      let responseText = data.output || data.text || JSON.stringify(data);
+      
+      // Convert literal \n to actual line breaks for proper markdown rendering
+      responseText = responseText.replace(/\\n/g, '\n');
 
       // Add bot response
       const botMsg: Message = {
