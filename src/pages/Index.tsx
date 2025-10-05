@@ -80,33 +80,54 @@ User question: `;
       // Extract the output field from the JSON response
       let responseText = data.output || data.text || JSON.stringify(data);
       
-      // Convert literal \n to actual line breaks
+      // Convert literal \n to actual line breaks and format into bullets
       responseText = responseText.replace(/\\n/g, '\n');
 
-      // Heuristic formatting: add blank line after section headers ending with ':'
-      // and turn "Title: description" lines into bullets if not already a list item.
-      {
-        const rawLines = responseText.split('\n');
-        const withSpacing: string[] = [];
-        for (let i = 0; i < rawLines.length; i++) {
-          const line = rawLines[i];
-          const next = rawLines[i + 1] ?? '';
-          withSpacing.push(line);
-          if (/:\s*$/.test(line) && next.trim() !== '') {
-            withSpacing.push(''); // add blank line after headings
-          }
+      // Enhanced formatting: convert newline-separated items to bullets
+      const rawLines = responseText.split('\n').map(l => l.trim());
+      const formatted: string[] = [];
+      
+      for (let i = 0; i < rawLines.length; i++) {
+        const line = rawLines[i];
+        const next = rawLines[i + 1] ?? '';
+        
+        if (!line) {
+          formatted.push('');
+          continue;
         }
-        const bulletized = withSpacing.map((l) => {
-          // Skip if it's already a list item or empty
-          if (/^\s*(?:[-*]|\d+\.)\s+/.test(l) || l.trim() === '') return l;
-          // Don't bulletize section headers like "Key aspects include:"
-          if (/include:\s*$/i.test(l)) return l;
-          // Bulletize "Title: details" lines
-          if (/^[A-Z][\w()\/'’`,&\-\s]{1,120}:\s+.+/.test(l)) return `- ${l}`;
-          return l;
-        });
-        responseText = bulletized.join('\n');
+        
+        // Already a bullet/list item
+        if (/^\s*(?:•|[-*]|\d+\.)\s+/.test(line)) {
+          formatted.push(line);
+          continue;
+        }
+        
+        // Emoji section header
+        if (/^[🧭💡🎯✅📚🔍⚡]\s+[A-Z\s]+$/.test(line)) {
+          if (formatted.length > 0 && formatted[formatted.length - 1] !== '') {
+            formatted.push('');
+          }
+          formatted.push(line);
+          if (next && !/^[🧭💡🎯✅📚🔍⚡]/.test(next)) {
+            formatted.push('');
+          }
+          continue;
+        }
+        
+        const prevLine = formatted[formatted.length - 1] || '';
+        const prevLine2 = formatted[formatted.length - 2] || '';
+        
+        // Bulletize after emoji header or after another bullet
+        if ((prevLine === '' && /^[🧭💡🎯✅📚🔍⚡]/.test(prevLine2)) || 
+            /^\s*(?:•|[-*])\s+/.test(prevLine)) {
+          formatted.push(`• ${line}`);
+          continue;
+        }
+        
+        formatted.push(line);
       }
+      
+      responseText = formatted.join('\n');
 
       // Add bot response
       const botMsg: Message = {
