@@ -52,6 +52,26 @@ const Index = () => {
       // Convert literal \n to actual line breaks
       responseText = responseText.replace(/\\n/g, '\n');
 
+      // Format text for better markdown rendering
+      const lines = responseText.split('\n');
+      const formattedLines = lines.map((line, index) => {
+        const trimmed = line.trim();
+        
+        // Add spacing after section headers (lines ending with ':')
+        if (trimmed.endsWith(':') && lines[index + 1]?.trim()) {
+          return line + '\n';
+        }
+        
+        // Ensure bullet points have proper spacing
+        if (trimmed.startsWith('-') || trimmed.startsWith('•')) {
+          return line;
+        }
+        
+        return line;
+      });
+      
+      responseText = formattedLines.join('\n');
+
       // Add bot response
       const botMsg: Message = {
         id: (Date.now() + 1).toString(),
