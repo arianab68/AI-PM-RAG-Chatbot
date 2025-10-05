@@ -37,20 +37,16 @@ const Index = () => {
 
     try {
       // Prepend formatting instructions to ensure clean markdown responses
-      const formattingInstructions = `Always format your responses in a clear, easy-to-read way using markdown.
+      const formattingInstructions = `Format all responses cleanly using markdown for better readability.
 
-Formatting rules:
-- Use **bold** or headings for key sections.
-- Use bullet points (with - or *) or numbered lists when listing items.
-- Add blank lines between paragraphs and list sections for readability.
-- For lists under a heading, add a blank line after the heading before starting the list.
-- Add a blank line between each major list item or section.
-- Keep explanations concise and visually organized.
-- End with a **Sources** section (if applicable), formatted as:
-  
-  **Sources**
-  - source1.pdf
-  - source2.pdf
+Formatting requirements:
+- Use **bold** for section headings (e.g., **Overview**, **Key Steps**, **Takeaways**)
+- Use bullet points (with -) or numbered lists for all structured information
+- Keep paragraphs short (2-3 sentences max) with blank lines between them
+- Add clear section titles like "Overview", "Steps", "Key Points", or "Takeaways"
+- For lists, add a blank line after the heading before starting bullets
+- Add blank lines between major sections
+- End with a **Sources** section if applicable
 
 User question: `;
 
