@@ -36,8 +36,25 @@ const Index = () => {
     setIsLoading(true);
 
     try {
+      // Prepend formatting instructions to ensure clean markdown responses
+      const formattingInstructions = `Always format your responses in a clear, easy-to-read way using markdown.
+
+Formatting rules:
+- Use **bold** or headings for key sections.
+- Use bullet points or numbered lists when listing items.
+- Add blank lines between paragraphs for readability.
+- Keep explanations concise and visually organized.
+- End with a **Sources** section (if applicable), formatted as:
+  **Sources**
+  - source1.pdf
+  - source2.pdf
+
+User question: `;
+
+      const fullMessage = formattingInstructions + userMessage;
+      
       const response = await fetch(
-        `${WEBHOOK_URL}?message=${encodeURIComponent(userMessage)}`
+        `${WEBHOOK_URL}?message=${encodeURIComponent(fullMessage)}`
       );
 
       if (!response.ok) {
