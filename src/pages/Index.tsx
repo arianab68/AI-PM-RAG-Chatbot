@@ -68,6 +68,31 @@ User question: `;
       // Convert literal \n to actual line breaks
       responseText = responseText.replace(/\\n/g, '\n');
 
+      // Heuristic formatting: add blank line after section headers ending with ':'
+      // and turn "Title: description" lines into bullets if not already a list item.
+      {
+        const rawLines = responseText.split('\n');
+        const withSpacing: string[] = [];
+        for (let i = 0; i < rawLines.length; i++) {
+          const line = rawLines[i];
+          const next = rawLines[i + 1] ?? '';
+          withSpacing.push(line);
+          if (/:\s*$/.test(line) && next.trim() !== '') {
+            withSpacing.push(''); // add blank line after headings
+          }
+        }
+        const bulletized = withSpacing.map((l) => {
+          // Skip if it's already a list item or empty
+          if (/^\s*(?:[-*]|\d+\.)\s+/.test(l) || l.trim() === '') return l;
+          // Don't bulletize section headers like "Key aspects include:"
+          if (/include:\s*$/i.test(l)) return l;
+          // Bulletize "Title: details" lines
+          if (/^[A-Z][\w()\/'’`,&\-\s]{1,120}:\s+.+/.test(l)) return `- ${l}`;
+          return l;
+        });
+        responseText = bulletized.join('\n');
+      }
+
       // Add bot response
       const botMsg: Message = {
         id: (Date.now() + 1).toString(),
