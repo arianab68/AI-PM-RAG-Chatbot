@@ -41,10 +41,13 @@ const Index = () => {
 
 Formatting rules:
 - Use **bold** or headings for key sections.
-- Use bullet points or numbered lists when listing items.
-- Add blank lines between paragraphs for readability.
+- Use bullet points (with - or *) or numbered lists when listing items.
+- Add blank lines between paragraphs and list sections for readability.
+- For lists under a heading, add a blank line after the heading before starting the list.
+- Add a blank line between each major list item or section.
 - Keep explanations concise and visually organized.
 - End with a **Sources** section (if applicable), formatted as:
+  
   **Sources**
   - source1.pdf
   - source2.pdf
