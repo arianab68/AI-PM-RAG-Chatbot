@@ -38,8 +38,3 @@ This project shows my ability to:
 ## 🛠️ Tools
 **n8n** · **Pinecone** · **OpenAI API** · **Lovable**
 
----
-
-## 📄 Reference
-Based on the tutorial: [How to Build a RAG Chatbot Without Coding](https://www.productcompass.pm/p/how-to-build-a-rag-chatbot) — by *Paweł Huryn, The Product Compass*
-
