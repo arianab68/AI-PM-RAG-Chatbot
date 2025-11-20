@@ -1,4 +1,4 @@
-# 🧠 RAG Chatbot — Product Management Portfolio Project
+# 🧠 AI Product Manager RAG Chatbot
 
 I built this no-code **Retrieval-Augmented Generation (RAG) Chatbot** by following [The Product Compass guide](https://www.productcompass.pm/p/how-to-build-a-rag-chatbot).  
 It demonstrates how I can design and prototype an AI product that retrieves information from documents and generates context-aware answers — without writing code.
